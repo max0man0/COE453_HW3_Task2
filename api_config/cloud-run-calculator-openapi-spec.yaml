@@ -1,0 +1,130 @@
+swagger: "2.0"
+info:
+  title: Cloud Run Calculator API
+  description: API for calculator app using google cloud run.
+  version: 1.0.0
+
+host: calculator-api.apigateway.hw-3-417211.cloud.goog 
+basePath: /
+schemes:
+  - https
+  - http
+
+paths:
+  /add:
+    post:
+      operationId: add
+      summary: Get the sum of two numbers.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: requestBody
+          in: body
+          required: true
+          description: The two numbers to add
+          schema:
+            $ref: '#/definitions/RequestBody'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseBody'
+      x-google-backend:
+        address: https://add-7te42k7qnq-uc.a.run.app
+
+  /sub:
+    post:
+      operationId: sub
+      summary: Get the difference between two numbers.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: requestBody
+          in: body
+          required: true
+          description: The two numbers to subtract
+          schema:
+            $ref: '#/definitions/RequestBody'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseBody'
+      x-google-backend:
+        address: https://sub-7te42k7qnq-uc.a.run.app
+
+  /mul:
+    post:
+      operationId: mul
+      summary: Get the product of two numbers.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: requestBody
+          in: body
+          required: true
+          description: The two numbers to multiply
+          schema:
+            $ref: '#/definitions/RequestBody'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseBody'
+      x-google-backend:
+        address: https://mul-7te42k7qnq-uc.a.run.app
+
+  /div:
+    post:
+      operationId: div
+      summary: Get the division of two numbers.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: requestBody
+          in: body
+          required: true
+          description: The two numbers to divide
+          schema:
+            $ref: '#/definitions/RequestBody'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseBody'
+      x-google-backend:
+        address: https://div-7te42k7qnq-uc.a.run.app
+
+definitions:
+  RequestBody:
+    type: object
+    required:
+      - x
+      - y
+    properties:
+      x:
+        type: integer
+      y:
+        type: integer
+
+  ResponseBody:
+    type: object
+    required:
+      - x
+      - y
+      - Result
+    properties:
+      x:
+        type: integer
+      y:
+        type: integer
+      Result:
+        type: integer
